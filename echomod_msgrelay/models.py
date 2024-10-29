@@ -1,11 +1,13 @@
 from datetime import datetime
-from typing import Literal
+from typing import TYPE_CHECKING, Literal
 
 from nonebot_plugin_alconna import UniMessage
-from nonebot_plugin_uninfo import Session as UninfoSession
 from pydantic import BaseModel, ConfigDict
 
 from .config import config
+
+if TYPE_CHECKING:
+    from nonebot_plugin_uninfo import Session as UninfoSession
 
 
 class User(BaseModel):

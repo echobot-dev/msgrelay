@@ -23,7 +23,7 @@ async def handle_message_event(
             "The channel where the message event reported is not in the specified "
             "channels. Skipped."
         )
-        return
+        await matcher.finish()
 
     state["event"] = RelayEvent(
         session=RelaySession.build(session),
