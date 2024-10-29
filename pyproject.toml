@@ -1,0 +1,64 @@
+[project]
+name = "echomod-msgrelay"
+version = "1.0.0-alpha.1"
+description = ""
+authors = [{ name = "Satoshi Jek", email = "jks15satoshi@gmail.com" }]
+dependencies = [
+    "anyio>=4.6.2.post1",
+    "nonebot-plugin-alconna>=0.53.1",
+    "nonebot-plugin-uninfo>=0.4.0",
+    "nonebot2>=2.3.0",
+]
+requires-python = ">=3.11"
+readme = "README.md"
+license = { text = "AGPL-3.0" }
+
+[project.optional-dependencies]
+onebot = ["nonebot-adapter-onebot>=2.4.4"]
+discord = ["nonebot-adapter-discord>=0.1.8"]
+
+# Build #
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# UV #
+[tool.uv]
+dev-dependencies = ["ruff>=0.4.5"]
+
+# Ruff #
+[tool.ruff]
+target-version = "py311"
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint]
+select = [
+    "ASYNC", # flake8-async
+    "C4",    # flake8-comprehensions
+    "C90",   # mccabe
+    "D",     # pydocstyle
+    "E",     # pycodestyle errors
+    "F",     # pyflakes
+    "I",     # isort
+    "PT",    # flake8-pytest-style
+    "Q",     # flake8-quotes
+    "RUF",   # Ruff-specific rules
+    "TCH",   # flake8-type-checking
+    "UP",    # pyupgrade
+    "W",     # pycodestyle warnings
+]
+ignore = [
+    "D104",   # undocumented-public-package
+    "D105",   # undocumented-magic-method
+    "D415",   # ends-in-punctuation
+    "RUF001", # ambiguous-unicode-character-string
+    "RUF002", # ambiguous-unicode-character-docstring
+]
+
+[tool.ruff.lint.isort]
+extra-standard-library = ["typing_extensions"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
