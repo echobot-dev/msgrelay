@@ -1,3 +1,3 @@
-from . import core
+from . import relay
 
-__all__ = ("core",)
+__all__ = ("relay",)

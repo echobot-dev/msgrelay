@@ -2,11 +2,12 @@ from datetime import datetime
 from typing import TYPE_CHECKING, Literal
 
 from nonebot_plugin_alconna import UniMessage
-from pydantic import BaseModel, ConfigDict
+from pydantic import AwareDatetime, BaseModel, ConfigDict
 
-from .config import config
+from .msgformat import create_formatter
 
 if TYPE_CHECKING:
+    from nonebot.internal.adapter import Bot
     from nonebot_plugin_uninfo import Session as UninfoSession
 
 
@@ -20,6 +21,7 @@ class Channel(BaseModel):
     id: str
     name: str
     type: str
+    platform: str
     avatar: str | None = None
 
 
@@ -44,7 +46,8 @@ class RelaySession(BaseModel):
             channel=Channel(
                 id=session.scene.id,
                 name=session.scene.name or "<N/A>",
-                type=session.scope,
+                type=session.scene.type.name,
+                platform=session.scope,
                 avatar=session.scene.avatar,
             ),
         )
@@ -56,13 +59,7 @@ class RelayEvent(BaseModel):
     session: RelaySession
     message: UniMessage
     op_type: Literal["create", "update", "delete"]
-    op_time: datetime
+    op_time: AwareDatetime
 
-    def get_message(
-        self, boundary: str = config.msgrelay_header_boundary
-    ) -> UniMessage:
-        return (
-            config.msgrelay_header_template.strip().format(**dict(self))
-            + boundary
-            + self.message
-        )
+    async def send_message(self, bot: "Bot", channel: str) -> None:
+        await create_formatter(bot, self).send_to(channel)
