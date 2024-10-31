@@ -74,31 +74,27 @@ dependencies = [
     { name = "nonebot2" },
 ]
 
-[package.optional-dependencies]
-discord = [
-    { name = "nonebot-adapter-discord" },
-]
-onebot = [
-    { name = "nonebot-adapter-onebot" },
-]
-
 [package.dev-dependencies]
 dev = [
+    { name = "nonebot-adapter-discord" },
+    { name = "nonebot-adapter-onebot" },
     { name = "ruff" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "anyio", specifier = ">=4.6.2.post1" },
-    { name = "nonebot-adapter-discord", marker = "extra == 'discord'", specifier = ">=0.1.8" },
-    { name = "nonebot-adapter-onebot", marker = "extra == 'onebot'", specifier = ">=2.4.4" },
     { name = "nonebot-plugin-alconna", specifier = ">=0.53.1" },
     { name = "nonebot-plugin-uninfo", specifier = ">=0.4.0" },
     { name = "nonebot2", specifier = ">=2.3.0" },
 ]
 
 [package.metadata.requires-dev]
-dev = [{ name = "ruff", specifier = ">=0.4.5" }]
+dev = [
+    { name = "nonebot-adapter-discord", specifier = ">=0.1.8" },
+    { name = "nonebot-adapter-onebot", specifier = ">=2.4.4" },
+    { name = "ruff", specifier = ">=0.4.5" },
+]
 
 [[package]]
 name = "idna"

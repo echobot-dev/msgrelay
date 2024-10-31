@@ -13,10 +13,6 @@ requires-python = ">=3.11"
 readme = "README.md"
 license = { text = "AGPL-3.0" }
 
-[project.optional-dependencies]
-onebot = ["nonebot-adapter-onebot>=2.4.4"]
-discord = ["nonebot-adapter-discord>=0.1.8"]
-
 # Build #
 [build-system]
 requires = ["hatchling"]
@@ -24,7 +20,11 @@ build-backend = "hatchling.build"
 
 # UV #
 [tool.uv]
-dev-dependencies = ["ruff>=0.4.5"]
+dev-dependencies = [
+    "ruff>=0.4.5",
+    "nonebot-adapter-onebot>=2.4.4",
+    "nonebot-adapter-discord>=0.1.8",
+]
 
 # Ruff #
 [tool.ruff]
