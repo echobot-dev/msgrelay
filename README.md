@@ -2,7 +2,7 @@
 
 *Part of project Echobot.*
 
-> Note: This is a pre-release version, and is not yet ready for production use.
+> Note: This is a pre-alpha version, all features are not stable and may be changed in the future. Use at your own risk.
 
 ## Features
 
